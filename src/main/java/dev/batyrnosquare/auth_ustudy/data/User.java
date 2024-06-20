@@ -14,20 +14,20 @@ import static org.apache.catalina.realm.UserDatabaseRealm.getRoles;
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "f_name")
-    private String firstName;
+    @Column(name = "f_name", nullable = false)
+    private String f_name;
 
-    @Column(name = "l_name")
-    private String lastName;
+    @Column(name = "l_name", nullable = false)
+    private String l_name;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
     @Column(name = "city")
@@ -42,7 +42,8 @@ public class User implements UserDetails {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "role")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
     private Role role;
 
 
@@ -80,19 +81,19 @@ public class User implements UserDetails {
     }
 
     public String getFirstName() {
-        return firstName;
+        return f_name;
     }
 
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
+        this.f_name = firstName;
     }
 
     public String getLastName() {
-        return lastName;
+        return l_name;
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.l_name = lastName;
     }
 
     public String getEmail() {
